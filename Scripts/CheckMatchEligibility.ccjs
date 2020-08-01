@@ -1,0 +1,32 @@
+var virtualCurrencyProxy = bridge.getVirtualCurrencyServiceProxy();
+var postResult = virtualCurrencyProxy.getCurrency(null);
+
+var result = {};
+
+if (postResult.status == 200) {
+    var currencyMap = postResult.data.currencyMap;
+    var tokens = currencyMap.Tokens.balance;
+    var freeTokens = currencyMap.FreeTokens.balance;
+    
+    if (tokens > 0 || freeTokens > 0){ // If the user has enuogh tokens.
+        result.hasTokens = true;
+    } else {
+        result.hasTokens = false;
+    }
+    
+} else {
+    result = postResult;
+}
+
+result;
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"CheckMatchEligibility",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Checks if the user is eligible to start the match, for example: has enough tokens.",
+// "parms":"{}\\n\\n",
+// "version":1,
+// "updatedAt":1596284131359

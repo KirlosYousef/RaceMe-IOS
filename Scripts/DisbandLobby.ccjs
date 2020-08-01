@@ -1,0 +1,25 @@
+var lobbyId = data.lobbyId;
+var msg = {};
+var details = {};
+var lobbyProxy = bridge.getLobbyServiceProxy();
+
+var postResult = lobbyProxy.sysDisbandLobby(lobbyId, msg, details);
+
+if (postResult.status == 200) {
+    connectInfo = "Match ended"
+    // Success!
+}else {
+    connectInfo = "Error"
+}
+connectInfo = postResult.status
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"DisbandLobby",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Disbands the given lobby. msg and details are optional values.",
+// "parms":"{\\n    \\\"lobbyId\\\": \\\"12782:1v1:999\\\",\\n    \\\"msg\\\": \\\"Game over\\\",\\n    \\\"details\\\": {}\\n}",
+// "version":1,
+// "updatedAt":1596284131362

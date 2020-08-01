@@ -1,0 +1,51 @@
+var SYSTEM_USER = data.profileId;
+
+// Create a user session for the system user
+var userSession = bridge.getSessionForProfile(SYSTEM_USER);
+
+// Use that session to gain access to the Client API
+var virtualCurrencyProxy = bridge.getVirtualCurrencyServiceProxy(userSession);
+
+var vcId = "FreeTokens";
+var postResult = virtualCurrencyProxy.getCurrency(vcId);
+
+if (postResult.status == 200) {
+    var vcAmount = postResult.data.currencyMap.FreeTokens.balance
+    if (vcAmount > 0) {
+        postResult = virtualCurrencyProxy.consumeCurrency(vcId, vcAmount);
+    }
+    if (postResult.status == 200) {
+        // Success!
+        var vcAmount = 2;
+        
+        var postResult = virtualCurrencyProxy.awardCurrency(vcId, vcAmount);
+        if (postResult.status == 200) {
+            // Success!
+        }
+    }
+}
+
+var scriptName = "ResetFreeTokens";
+var jsonScriptData = {
+    "profileId": SYSTEM_USER
+};
+var minutesFromNow = 10080;
+var scriptProxy = bridge.getScriptServiceProxy(userSession);
+
+var postResult = scriptProxy.scheduleRunScriptMinutes(scriptName, jsonScriptData, minutesFromNow);
+if (postResult.status == 200) {
+    // Success!
+}
+
+postResult;
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"ResetFreeTokens",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Resets the free tokens to two tokens.",
+// "parms":"{\\n    \\\"profileId\\\": \\\"\\\"\\n}",
+// "version":1,
+// "updatedAt":1596284131383

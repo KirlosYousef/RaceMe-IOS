@@ -1,0 +1,111 @@
+// Player Statistics
+// Atomically increment user statistics. User statistics are defined through the brainCloud portal.
+var playerStatistics = {
+    "matchesPlayed": 1,
+    "matchesWon": data.didWin,
+    "secondsRun": data.secondsRun, // The time the user has ran so far in seconds.
+    "distanceRun": data.distance // The total distance the user ran in meters.
+};
+
+var playerStatisticsProxy = bridge.getPlayerStatisticsServiceProxy();
+
+var postResult = playerStatisticsProxy.incrementUserStats(playerStatistics);
+
+if (postResult.status == 200) {
+    // Success!
+}
+
+// Global Statistics
+// Atomically increment global statistics. Global statistics are defined through the brainCloud portal.
+var globalStatistics = {
+    "matchesPlayed": data.didWin, // The number of matches to be updated, should be *1* or *0* to be updated once per match.
+    "secondsRun": data.secondsRun,
+    "distanceRun": data.distance
+};
+
+var globalStatisticsProxy = bridge.getGlobalStatisticsServiceProxy();
+
+var postResult = globalStatisticsProxy.incrementGlobalStats(globalStatistics);
+if (postResult.status == 200) {
+    // Success!
+}
+
+// User's Experience
+// Increments the user's experience. If the player goes up a level, the new level details will be returned along with a list of rewards.
+// Set 50 points for the winner and 10 for the loser
+var xpPoints = 10
+if (data.didWin == 1){
+    xpPoints = 50
+}
+
+var postResult = playerStatisticsProxy.incrementExperiencePoints(xpPoints);
+if (postResult.status == 200) {
+    // Success!
+}
+
+// User's Rating
+var matchMakingProxy = bridge.getMatchMakingServiceProxy();
+
+var postResult = matchMakingProxy.incrementPlayerRating(xpPoints);
+if (postResult.status == 200) {
+    // Success!
+}
+
+// Leaderboards
+function postScore( service, leaderboardId, score )
+{
+    // Call the API to post the score to the specified leaderboard
+    var result = service.postScoreToLeaderboard( leaderboardId, score, null );
+    
+    if (result.status == 200){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+var leaderboardService = bridge.getLeaderboardServiceProxy();
+var numPosted = 0; // Defines the number of leaderboards posted to.
+
+// Post the scores to the 3 leaderboards
+numPosted += postScore( leaderboardService, "WeeklyFriendsLeaderboard", xpPoints);
+numPosted += postScore( leaderboardService, "MonthlyFriendsLeaderboard", xpPoints);
+numPosted += postScore( leaderboardService, "YearlyFriendsLeaderboard", xpPoints);
+
+// Notification
+var toProfileId = bridge.getProfileId();
+var alertContentJson = {
+    "body": "THERE IS ALWAYS A NEXT TIME",
+    "title": "You still have earned 10 XP!",
+    "sound": "default",
+    "badge" : 1
+};
+
+if (data.didWin == 1){
+    alertContentJson = {
+    "body": "YOU MADE IT",
+    "title": "Great job, You have earned 50 XP!",
+    "sound": "default",
+    "badge" : 1
+    };
+}
+
+var pushNotificationProxy = bridge.getPushNotificationServiceProxy();
+
+var postResult = pushNotificationProxy.sendNormalizedPushNotification(toProfileId, alertContentJson, {});
+if (postResult.status == 200) {
+    // Success!
+}
+
+postResult;
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"StoreMatchData",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":60,
+// "description":"To be called once a match ends to increase the players data and sends a notification about match status.",
+// "parms":"{\\n  \\\"didWin\\\": \\\"1\\\",\\n  \\\"secondsRun\\\": \\\"1000\\\",\\n  \\\"distance\\\": 1000\\n}",
+// "version":1,
+// "updatedAt":1596284131393

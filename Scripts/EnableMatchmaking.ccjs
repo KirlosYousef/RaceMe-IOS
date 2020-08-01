@@ -1,0 +1,41 @@
+var scriptName = "CheckMatchEligibility";
+
+var scriptProxy = bridge.getScriptServiceProxy();
+
+var scriptPostResult = scriptProxy.runScript(scriptName, {});
+
+var result = {};
+
+if (scriptPostResult.status == 200) {
+    if (scriptPostResult.data.response.hasTokens){ // Checks if the user has enough tokens.
+        
+        var matchMakingProxy = bridge.getMatchMakingServiceProxy();
+        var matchmakingPostResult = matchMakingProxy.enableMatchmaking(); // Enable Matchmaking
+        
+        if (matchmakingPostResult.status == 200) {
+            result.isEnabled = true;
+        } else {
+            result.isEnabled = false;
+            result.reason = matchmakingPostResult
+        }
+    } else {
+        result.isEnabled = false;
+        result.reason = "No tokens"
+    }
+} else {
+    result.isEnabled = false;
+    result.reason = scriptPostResult;
+}
+
+result;
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"EnableMatchmaking",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Enables match making for the player.",
+// "parms":"{\\n}",
+// "version":1,
+// "updatedAt":1596284131365

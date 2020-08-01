@@ -1,0 +1,25 @@
+var lobbyId = data.lobbyId;
+var signalData = data.signalData;
+// var from = {};
+var lobbyProxy = bridge.getLobbyServiceProxy();
+var result = {}
+
+var postResult = lobbyProxy.sysSendSignal(lobbyId, signalData);
+if (postResult.status == 200) {
+    // Success!
+    result = "OK"
+}else {
+    result = "NO"
+}
+result = postResult
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"SendSignal",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Send the given data to all members of the given lobby.",
+// "parms":"{\\n  \\\"lobbyId\\\":\\\"12782:1v1:999\\\",\\n  \\\"signalData\\\": {\\\"testData\\\": 50}\\n}",
+// "version":1,
+// "updatedAt":1596284131389

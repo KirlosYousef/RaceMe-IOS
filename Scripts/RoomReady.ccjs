@@ -1,0 +1,24 @@
+var lobbyId = data.lobbyId;
+var connectInfo = {};
+var lobbyProxy = bridge.getLobbyServiceProxy();
+
+var postResult = lobbyProxy.sysRoomReady(lobbyId, connectInfo);
+
+if (postResult.status == 200) {
+    // Success!
+    connectInfo = "Connected"
+} else {
+    connectInfo = "NO"
+}
+connectInfo
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"RoomReady",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Tells the lobby system that a room server is ready to go.",
+// "parms":"{\\n    \\\"lobbyId\\\": \\\"12782:1v1:999\\\",\\n    \\\"connectInfo\\\": {}\\n}",
+// "version":1,
+// "updatedAt":1596284131386

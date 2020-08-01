@@ -1,0 +1,25 @@
+var cxId = data.cxId;
+var lobbyType = data.lobbyType;
+var lobbyProxy = bridge.getLobbyServiceProxy();
+var result = {}
+
+var postResult = lobbyProxy.cancelFindRequest(cxId, lobbyType);
+if (postResult.status == 200) {
+    // Success!
+}
+result = postResult
+
+
+
+
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"CancelFindRequest",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Cancels any FindLobby or FindOrCreateLobby requests that have been previously submitted by the caller for the given lobbyType.",
+// "parms":"{\\n  \\\"cxId\\\": \\\"55555:aaa-bbb-ccc-ddd:asdfjkl\\\",\\n  \\\"lobbyType\\\": \\\"1v1\\\"\\n}",
+// "version":1,
+// "updatedAt":1596284131356

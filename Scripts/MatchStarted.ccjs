@@ -1,0 +1,30 @@
+var vcId = "FreeTokens";
+var vcAmount = 1;
+var virtualCurrencyProxy = bridge.getVirtualCurrencyServiceProxy();
+
+var postResult = virtualCurrencyProxy.consumeCurrency(vcId, vcAmount);
+if (postResult.status == 200) {
+    // Success!
+    connectInfo = "consumed";
+} else {
+    vcId = "Tokens";
+    postResult = virtualCurrencyProxy.consumeCurrency(vcId, vcAmount);
+    if (postResult.status == 200) {
+        // Success!
+        connectInfo = "consumed";
+    } else {
+        connectInfo = "failed";
+    }
+}
+connectInfo;
+
+//*** ------------- brainCloud meta-data begins now - do not hand-edit -----------------
+// "scriptName":"MatchStarted",
+// "clientCallable":true,
+// "s2sCallable":false,
+// "peerCallable":false,
+// "scriptTimeout":20,
+// "description":"Consumes one token when the match start",
+// "parms":"{}",
+// "version":1,
+// "updatedAt":1596284131369
