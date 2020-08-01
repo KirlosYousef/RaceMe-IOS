@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SlidingTabView",
+        "repositoryURL": "https://github.com/mskmx/SlidingTabView",
+        "state": {
+          "branch": "master",
+          "revision": "dcc78a0fbbb38a13e4e9f0d2d9a47654d7b67c02",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
