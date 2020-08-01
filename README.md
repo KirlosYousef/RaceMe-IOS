@@ -9,6 +9,8 @@
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FKirlosYousef%2FRaceMe-IOS)](https://twitter.com/intent/tweet?text=Check-this-out!:&url=https%3A%2F%2Fgithub.com%2FKirlosYousef%2FRaceMe-IOS)
 
 ![Imgur Image](https://i.imgur.com/WFZnpem.png)
+> Unfortunately, the app is no longer available on the AppStore.
+
 # Table of Contents
 
 - [Features](#Features)
