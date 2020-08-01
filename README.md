@@ -47,10 +47,10 @@ Finish the milestones at your profile to get more XP and level up faster!
 
 In case no opponents found, the player will be placed with a BOT that runs in a random average speed of the normal human.
 
-<img height="400" src="https://i.imgur.com/HhCbiYm.png"><img height="400" src="https://i.imgur.com/eMPX5Zr.png">
-<img height="400" src="https://i.imgur.com/TQpTigV.png"><img height="400" src="https://i.imgur.com/Up4T6Tl.png">
+<img height="400" src="https://i.imgur.com/HhCbiYm.png"><img height="400" src="https://i.imgur.com/eMPX5Zr.png"><img height="400" src="https://i.imgur.com/TQpTigV.png"><img height="400" src="https://i.imgur.com/Up4T6Tl.png">
 
 # Tech
+- <a href="https://getbraincloud.com" target="_blank">BrainCloud</a> as BaaS
 - Firebase
 - Facebook Auth
 - Facebook Audience Network
