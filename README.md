@@ -5,7 +5,7 @@
 ![version](https://img.shields.io/badge/version-1.0.1-yellow)
 [![GitHub license](https://img.shields.io/github/license/KirlosYousef/RaceMe-IOS)](https://github.com/KirlosYousef/RaceMe-IOS/blob/master/LICENSE)
 ![appstore](https://img.shields.io/website?down_message=unavailable&label=appstore&logo=appstore&up_message=available&url=https%3A%2F%2Fapple.co%2F2UoVwpw)
-![stars](https://img.shields.io/badge/stars-5-blue)
+![appstore_stars](https://img.shields.io/badge/appstore_stars-5-blue)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FKirlosYousef%2FRaceMe-IOS)](https://twitter.com/intent/tweet?text=Check-this-out!:&url=https%3A%2F%2Fgithub.com%2FKirlosYousef%2FRaceMe-IOS)
 
 ![Imgur Image](https://i.imgur.com/WFZnpem.png)
